@@ -27,11 +27,11 @@ const generateFixtures = (groupsCount, playersCount) => {
             group: String.fromCharCode(idx + 65),
             players: [],
         }));
-
+    
     for (let i = 0; i < playersCount; i++) {
         allGroups[i % groupsCount].players.push(allPlayers[i]);
     }
-
+   
     const fixtures = [];
 
     for (let i = 0; i < groupsCount; i++) {
@@ -66,24 +66,22 @@ const buildFixtures = async () => {
         },
     ]);
 
-    console.log(
-        `The total number of groups are ${groupsCount} and total number of players are ${playersCount}`
-    );
-
     if (playersCount <= 0 || groupsCount <= 0) {
         return console.log(
-            chalk.red("Total players and total groups count must be greater than 0.")
+            chalk.bgRed("Warnning : Total players and total groups count must be greater than 0.")
         );
     }
 
     if (playersCount < groupsCount) {
         return console.log(
             chalk.bgRed("Warnning: Total players must be greater than total groups.")
-           // chalk.bgHex('#FFA500')("Warnning: Total players must be greater than total groups.")
-
         );
     }
     
+    console.log(
+        `The total number of groups are ${groupsCount} and total number of players are ${playersCount}`
+    );
+
     console.log(chalk.bold.bgGreen("The Fixtures looks like:"));
 
     const fixtures = generateFixtures(groupsCount, playersCount);
